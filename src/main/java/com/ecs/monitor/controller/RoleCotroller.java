@@ -5,10 +5,14 @@ import com.ecs.monitor.bean.Proj1RoleExample;
 import com.ecs.monitor.service.service_interface.IProjRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/role")
@@ -85,9 +89,26 @@ public class RoleCotroller {
     @RequestMapping("/list_by_deleted")
     @ResponseBody
     //查询(deleted：null=all,1=normal,0=deleted)
-    public List<Proj1Role> getAllByDeleted(Integer deleted){
-       return  projRoleService.getAllByDeleted(deleted);
+    public String getAllByDeleted(Integer deleted){
+        System.out.println(deleted);
+       //projRoleService.getAllByDeleted(deleted);
+       return "proc";
     }
+    @RequestMapping("/test0")
+    public String test0(Map<String,Object> map){
+        List<Proj1Role> allByDeleted = projRoleService.getAllByDeleted(null);
 
+        map.put("hello","<h1>登录成功</h1>");
+        map.put("role",allByDeleted);
+        return "proc";
+    }
+    @RequestMapping("/test1")
+    public String test1(Model model){
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("sina");
+        strings.add("123");
+        model.addAttribute("items",strings);
 
+        return "test1";
+    }
 }

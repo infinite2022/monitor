@@ -14,10 +14,10 @@
 </head>
 <body>
 <div class="ui fixed inverted menu">
-<!--    <a th:href="@{/}" class="header item">-->
-<!--        &lt;!&ndash;<img class="ui" th:src="@{/icon.png}" width="104" height="24" alt="" />&ndash;&gt;-->
-<!--        <img class="ui" th:src="@{/templates/icon.png}" width="156" height="32" alt="" />-->
-<!--    </a>-->
+    <!--    <a th:href="@{/}" class="header item">-->
+    <!--        &lt;!&ndash;<img class="ui" th:src="@{/icon.png}" width="104" height="24" alt="" />&ndash;&gt;-->
+    <!--        <img class="ui" th:src="@{/templates/icon.png}" width="156" height="32" alt="" />-->
+    <!--    </a>-->
     <a th:href="@{/role/list_by_deleted}" class="item">
         <i class="desktop icon"></i>选择服务器
     </a>
@@ -54,8 +54,24 @@
         </div>
     </div>
 </div>
-<div class="card-body">
+<h4 class="card-body">
 
+    <div class="center-pill" th:utext="${hello}">
+        登录失败
+    </div>
+    <div class="popover-body" th:each="rolex:${role}">
+        <td th:text="${rolex.mobile}">mobile</td>
+        <th th:text="${rolex.level}">level</th>
+        <th th:text="${rolex.deleted}"? #{true} : #{false}>deleted</th>
+    </div>
+    <hr/>
+
+    <h4 th:text="${rolex}" th:each="rolex:${role}"></h4>
+    <h4 th:each="rolex:${role}">[[${rolex.mobile}]]</h4>
+    <h2><a class="btn btn-dark btn-success" href="/role/test1">进入页面</a> </h2>
+<!--    <div th:class="${login_class}" th:test="${hello}">登录失败</div>-->
+<!--    ${取值，调用方法}#{取国际化内容}~{片段}@{取url}-->
+<!--    调用超链接示例th:href="@{/xx/yy(key=${value},key1=${value1})}"-->
     <div class="ui three columns stackable grid">
         <div class="column" align="center">
             <i class="list layout huge icon"></i><h4>题库</h4>

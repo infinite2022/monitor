@@ -21,7 +21,7 @@
     <a th:href="@{/role/list_by_deleted}" class="item">
         <i class="desktop icon"></i>选择服务器
     </a>
-    <a th:href="@{/role/test0}" class="item">
+    <a th:href="@{/problemset/list}" class="item">
         <i class="list layout icon"></i>进程监控中心
     </a>
     <a th:href="@{/discuss}" class="item">
@@ -54,34 +54,44 @@
         </div>
     </div>
 </div>
-<div class="card-body">
+<div class="ui container">
 
-    <div class="ui three columns stackable grid">
+    <div class="ui four columns stackable grid">
         <div class="column" align="center">
             <i class="list layout huge icon"></i><h4>题库</h4>
-            <h5>当前服务器列表</h5>
+            <h5>适合教学使用的题目，合理的题目分类</h5>
         </div>
         <div class="column" align="center">
             <i class="desktop huge icon"></i><h4>考试</h4>
-            <h5>当前进程列表</h5>
+            <h5>即使是正规的教学考试，也能轻松应对，准确评判</h5>
         </div>
         <div class="column" align="center">
             <i class="users huge icon"></i><h4>社区</h4>
-            <h5>当前异常信息列表</h5>
+            <h5>在这里同学可以分享自己的学习体验，解答疑惑</h5>
+        </div>
+        <div class="column" align="center">
+            <i class="github square huge icon"></i>
+            <h4>技术</h4>
+            <h5>多样化判题技术，灵活选择判题模式，准确的同时也能近人情</h5>
         </div>
     </div>
     <br /><br />
 </div>
-<hr>
 <div id="footer">
     <div class="ui container">
         <div class="ui stackable two columns grid">
-
-            <div class="left aligned column">
-                <h3>大庆聚宝科技</h3>
-                &copy; 2019 DQJB All Rights Reserved
+            <div class="column">
+                <div class="ui two columns grid">
+                    <div class="column">
+                        <h3>项目介绍</h3>
+                        服务器监控程序
+                    </div>
+                    <div class="column">
+                        <h3>联系我们</h3>
+                        大庆聚宝科技有限公司
+                    </div>
+                </div>
             </div>
-
             <div class="right aligned column">
                 &copy; 2018 GDUFE All Rights Reserved &nbsp;&nbsp;
                 <br />
@@ -93,7 +103,6 @@
         </div>
     </div>
 </div>
-
 <!-- 登录模态框 -->
 <div class="ui mini modal" id="loginModal">
     <div class="header">登录</div>

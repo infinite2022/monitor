@@ -14,10 +14,10 @@
 </head>
 <body>
 <div class="ui fixed inverted menu">
-<!--    <a th:href="@{/}" class="header item">-->
-<!--        &lt;!&ndash;<img class="ui" th:src="@{/icon.png}" width="104" height="24" alt="" />&ndash;&gt;-->
-<!--        <img class="ui" th:src="@{/templates/icon.png}" width="156" height="32" alt="" />-->
-<!--    </a>-->
+    <!--    <a th:href="@{/}" class="header item">-->
+    <!--        &lt;!&ndash;<img class="ui" th:src="@{/icon.png}" width="104" height="24" alt="" />&ndash;&gt;-->
+    <!--        <img class="ui" th:src="@{/templates/icon.png}" width="156" height="32" alt="" />-->
+    <!--    </a>-->
     <a th:href="@{/role/list_by_deleted}" class="item">
         <i class="desktop icon"></i>选择服务器
     </a>
@@ -45,30 +45,13 @@
 </div>
 <div class="pg_page_container">
     <div id="main_background" th:style="'background-image: url('+${#httpServletRequest.getContextPath()}+'/img/bg.jpg);'">
-        <div class="logo_panel">
-            <br/><br/><br/><br/><br/><br/>
-            <!--<img th:src="@{/img/logo_flat.png}" style="max-height: 80px; height:80px;" /><br />-->
-            <!--<span style="font-size: 1.2em; font-weight: 500; letter-spacing: 0.5em; line-height: 3.2em; color: #fff;">在线考试教学辅助系统1.0</span>-->
-            <span style="font-size: 1.8em; font-weight: 500; letter-spacing: 0.5em; line-height: 3.2em; color: #fff;">广东财经大学在线考试教学辅助系统1.0</span>
-            <br />
-        </div>
-    </div>
-</div>
-<div class="card-body">
+        <form>
+            <label>demo_test</label>
+            <select class="form-control">
+                <option th:value="${s0}" th:each="s0:${strings}" th:test="${s0}"></option>
+            </select>
+        </form>
 
-    <div class="ui three columns stackable grid">
-        <div class="column" align="center">
-            <i class="list layout huge icon"></i><h4>题库</h4>
-            <h5>当前服务器列表</h5>
-        </div>
-        <div class="column" align="center">
-            <i class="desktop huge icon"></i><h4>考试</h4>
-            <h5>当前进程列表</h5>
-        </div>
-        <div class="column" align="center">
-            <i class="users huge icon"></i><h4>社区</h4>
-            <h5>当前异常信息列表</h5>
-        </div>
     </div>
     <br /><br />
 </div>
