@@ -1,15 +1,52 @@
-<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <title>
+        登录服务器管理程序
+    </title>
 
-    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}">
-    <link href="asserts/css/signin.css" th:href="@{/webjars/asserts/css/signin.css}" rel="stylesheet">
+    <link rel="stylesheet" href="assert/css/bootstrap.css" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}" />
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.slim.js}"></script>
+
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.bundle.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.js}"></script>
 
 </head>
 <body>
-登录
-
+<div th:fragment="loginModal">
+    <div class="ui modal">
+        <div class="header">登录</div>
+        <div class="content">
+            <div class="ui two column middle aligned very relaxed stackable grid">
+                <div class="column">
+                    <div class="ui form">
+                        <div class="field">
+                            <label>Username</label>
+                            <div class="ui left icon input">
+                                <input type="text" placeholder="Username">
+                                <i class="user icon"></i>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="ui left icon input">
+                                <input type="password">
+                                <i class="lock icon"></i>
+                            </div>
+                        </div>
+                        <div class="ui blue submit button">Login</div>
+                    </div>
+                </div>
+                <div class="ui vertical divider">Or </div>
+                <div class="center aligned column">
+                    <div class="ui big green labeled icon button"><i class="signup icon"></i> Sign Up </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

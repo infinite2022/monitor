@@ -39,6 +39,11 @@ public class RoleCotroller {
         return "add_success";
     }
 
+    @RequestMapping("/login")
+    public String login(){
+        return "home";
+    }
+
     @RequestMapping("/del_by_mobile")
     @ResponseBody
     public String deleteByMobile(@RequestParam(name ="mobile",defaultValue = "",required = true) String mobile,
@@ -83,5 +88,6 @@ public class RoleCotroller {
     public List<Proj1Role> getAllByDeleted(Integer deleted){
        return  projRoleService.getAllByDeleted(deleted);
     }
+
 
 }
