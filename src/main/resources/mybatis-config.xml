@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    <properties resource="db-config.properties"></properties>-->
+<!--    <properties resource="classpath:/application.properties"/>-->
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.jubao.simpleecs.bean"/>
+        <package name="com.jubao.simpleecs.to"/>
+    </typeAliases>
+    <environments default="def">
+        <environment id="def">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+<!--                <property name="driver" value="${spring.datasource.driver-class-name}"/>-->
+<!--                <property name="url" value="${spring.datasource.url}"/>-->
+<!--                <property name="username" value="${spring.datasource.username}"/>-->
+<!--                <property name="password" value="${spring.datasource.password}"/>-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://118.190.203.107:3306/sys_monitor?allowMultiQueries=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="jubaokj@2019."/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        <mapper resource="classpath:mapper/OrderForConsumerMapper.xml"/>-->
+    </mappers>
+</configuration>
