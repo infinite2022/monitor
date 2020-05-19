@@ -17,7 +17,6 @@ public class MonitorApplicationTests {
     }
 
     /*使用完成后注释掉*/
-    @Test
     public void execMybatisGenerator() throws Exception{
 
         System.out.println("the general is running ...");

@@ -1,19 +1,41 @@
-<!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--01 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
     <title>Signin Template for Bootstrap</title>
-    <!-- @{}的形式是链接资源文件或者访问某个请求路径 -->
-    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
-    <link href="asserts/css/signin.css" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+
+    <!--02 Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--03 IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!--04 Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+    <!--05 Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--06[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!--07 HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--08[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
-<body class="text-center">
-<!--此处要写成method="POST"，不能写成th:method="POST"-->
-    <form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="POST">
+<body>
+
+<div class="container">
+
+    <form class="form-signin">
         <h2 class="form-signin-heading center-block" >登录页面</h2>
         <label for="inputMobile" class="sr-only">输入手机号码</label>
         <input type="text" id="inputMobile" class="form-control" placeholder="请输入用户名" required="" autofocus="">
@@ -28,6 +50,11 @@
     </form>
     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">注 册</button>
 
-</body>
+</div> <!-- /container -->
 
-</html>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body></html>
