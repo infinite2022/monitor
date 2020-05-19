@@ -18,11 +18,14 @@ public class ProjProcessService implements IProjProcessService {
 
     //查询所有的
     @Override
-    public List<Proj1Process> getAllProcess(Integer deleted){
+    public List<Proj1Process> getAllProcess(Integer deleted,Integer daemon){
         proj1ProcessExample = new Proj1ProcessExample();
         Proj1ProcessExample.Criteria criteria = proj1ProcessExample.createCriteria();
-        criteria.andDeletedEqualTo(deleted);
         if(deleted != null)
+            criteria.andDeletedEqualTo(deleted);
+        if(daemon != null)
+            criteria.andDaemonEqualTo(daemon);
+        if(daemon != null || deleted != null)
             return proj1ProcessMapper.selectByExample(proj1ProcessExample);
         return proj1ProcessMapper.selectByExample(null);
     }

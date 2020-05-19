@@ -31,7 +31,15 @@ public class ProjLogService implements IProjLogService {
     public List<Proj1Log> selectByTime(Date startTime, Date stopTime) {
         proj1LogExample = new Proj1LogExample();
         Proj1LogExample.Criteria criteria = proj1LogExample.createCriteria();
-        criteria.andPmtUpdateBetween(startTime,stopTime);
+        if(startTime == null && stopTime == null)
+            return proj1LogMapper.selectByExample(null);
+        if(startTime != null){
+            criteria.andPmtUpdateGreaterThan(startTime);
+        }else if(stopTime != null){
+            criteria.andPmtUpdateLessThan(startTime);
+        }else{
+            criteria.andPmtUpdateBetween(startTime,stopTime);
+        }
 
         return proj1LogMapper.selectByExample(proj1LogExample);
     }
@@ -51,7 +59,15 @@ public class ProjLogService implements IProjLogService {
         proj1LogExample = new Proj1LogExample();
         Proj1LogExample.Criteria criteria = proj1LogExample.createCriteria();
 
-        criteria.andPmtUpdateBetween(toDayValue(startTime),toDayValue(stopTime));
+        if(startTime == null && stopTime == null)
+            return proj1LogMapper.selectByExample(null);
+        if(startTime != null){
+            criteria.andPmtUpdateGreaterThan(toDayValue(startTime));
+        }else if(stopTime != null){
+            criteria.andPmtUpdateLessThan(toDayValue(startTime));
+        }else{
+            criteria.andPmtUpdateBetween(toDayValue(startTime),toDayValue(stopTime));
+        }
         return proj1LogMapper.selectByExample(proj1LogExample);
     }
 

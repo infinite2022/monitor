@@ -6,16 +6,18 @@ import com.ecs.monitor.service.service_interface.IProjRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/role")
+@RequestMapping("/user")
 public class RoleCotroller {
 
     @Autowired
@@ -43,9 +45,21 @@ public class RoleCotroller {
         return "add_success";
     }
 
-    @RequestMapping("/login")
-    public String login(){
-        return "home";
+    @PostMapping("/login")
+    public String login(@RequestParam("mobile") String mobile, @RequestParam("password") String password, Map<String,Object> map, HttpSession session){
+
+            if(mobile == null || password == null){
+                map.put("msg","用户名或密码错误");
+                return "login";
+            }
+            Proj1Role proj1Role = new Proj1Role();
+            proj1Role.setMobile(mobile);
+            proj1Role.setPassword(password);
+            if(projRoleService.getByObject(proj1Role) != null){
+                session.setAttribute("loginUser",mobile);//加入session
+                return "main";  //"redirect:/main";
+            }
+        return "login";
     }
 
     @RequestMapping("/del_by_mobile")

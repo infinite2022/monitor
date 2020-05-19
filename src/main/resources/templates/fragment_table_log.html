@@ -1,0 +1,37 @@
+<!--   接口：/prog/log,属性名：logs  -->
+<h2 class="sub-header">进程日志</h2>
+<div class="table-responsive">
+    <table class="table table-striped" >
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>进程号</th>
+            <th>进程名称</th>
+            <th>进程路径</th>
+            <th>系统/人工</th>
+            <th>更新时间</th>
+            <th>日志</th>
+            <th>start</th>
+            <th>stop</th>
+            <th>restart</th>
+        </tr>
+        </thead>
+        <hr>
+        <tbody>
+        <tr th:each="log:${logs}">
+            <td th:text="${log.id}"></td>
+            <td th:text="${log.pid}">进程号</td>
+            <td th:text="${log.pname}">进程名称</td>
+            <td th:text="${log.status}">状态</td>
+            <td th:text="${log.type}">人工/系统</td>
+            <td th:text="${log.pmtUpdate}">更新时间</td>
+            <td th:text="${log.log}">备查日志</td>
+
+            <td><a  th:href="@{/prog/start_one(fileName=${log.pname})}">启动</a></td>
+            <td><a  th:href="@{/prog/kill_one(pid=${log.pid})}">停止</a></td>
+            <td><a  th:href="@{/prog/restart(filename=${log.pname})}">重启</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,16 @@
+<!--   接口：/proc/list_all,属性名：process  -->
+<h2 class="sub-header">添加新用户</h2>
+
+<form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="POST">
+    <h2 class="form-signin-heading center-block" >登录页面</h2>
+    <label for="inputMobile" class="sr-only">输入手机号码</label>
+    <input type="text" id="inputMobile" class="form-control" placeholder="请输入用户名" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">输入密码</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">登 录</button>
+</form>

@@ -1,0 +1,35 @@
+<!--   接口：/proc/list_all,属性名：process  -->
+<h2 class="sub-header">进程文件管理</h2>
+<div class="table-responsive">
+    <table class="table table-striped" >
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>进程号</th>
+            <th>进程名称</th>
+            <th>进程路径</th>
+            <th>状态</th>
+            <th>是否守护进程</th>
+            <th>删除标记</th>
+            <th>创建时间</th>
+            <th>更新时间</th>
+            <th>operation</th>
+        </tr>
+        </thead>
+        <hr>
+        <tbody>
+        <tr th:each="proc:${process}">
+            <td th:text="${proc.id}"></td>
+            <td th:text="${proc.pid}">进程号</td>
+            <td th:text="${proc.pname}">进程名称</td>
+            <td th:text="${proc.fpath}">进程路径</td>
+            <td th:text="${proc.status}">状态</td>
+            <td th:text="${proc.daemon}">是否守护进程</td>
+            <td th:text="${proc.deleted}">日否存在</td>
+            <td th:text="${proc.pmtCreate}">创建时间</td>
+            <td th:text="${proc.pmtUpdate}">更新时间</td>
+            <td><a th:href="@{/proc/del_item(id=${proc.id})}">删除本项</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -42,7 +42,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">服务器与程序</a>
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">[[${session.loginUser}]] 欢迎！！！</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -60,6 +60,7 @@
 
 <!--====================================================================================================================-->
 <div class="container-fluid"><!--container-fluid-->
+
 
     <div class="row color-rect-pane"><!--div row-->
         <div class="col-sm-3 col-md-2 sidebar left-container" >
@@ -80,111 +81,63 @@
                 <li><a href="">删除用户</a></li>
             </ul>
         </div>
-<!--        <div class="col-sm-10" >-->
-<!--&lt;!&ndash;            <div class="column" th:include="fragment_process_table.html"></div>&ndash;&gt;-->
-<!--        </div>&lt;!&ndash;column&ndash;&gt;-->
-        <hr>
-        <div class="column" th:include="fragment_table_log_history"></div><!--column-->
-
+        <div class="col-sm-10">
+            <div class="column">
+                <h2 class="sub-header">进程日志表</h2>
+                <div class="table-responsive">
+                    <!--                /proc/list_all监控所有进程-->
+                    <table class="table table-striped" >
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>pid</th>
+                            <th>pname</th>
+                            <th>fpath</th>
+                            <th>status</th>
+                            <th>daemon</th>
+                            <th>deleted</th>
+                            <th>pmtCreate</th>
+                            <th>pmtUpdate</th>
+                        </tr>
+                        </thead>
+                        <hr>
+                        <tbody>
+                        <tr th:each="proc:${current_process}">
+                            <td th:text="${proc.id}"></td>
+                            <td th:text="${proc.pid}">进程号</td>
+                            <td th:text="${proc.pname}">进程名称</td>
+                            <td th:text="${proc.fpath}">进程路径</td>
+                            <td th:text="${proc.status}">状态</td>
+                            <td th:text="${proc.daemon}">是否守护进程</td>
+                            <td th:text="${proc.deleted}">日否存在</td>
+                            <td th:text="${proc.pmtCreate}">创建时间</td>
+                            <td th:text="${proc.pmtUpdate}">更新时间</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!--column-->
     </div><!--div row-->
-
 </div><!--container-fluid-->
 
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon1"> <span class="glyphicon glyphicon-save-file" aria-hidden="true"></span></span>
-    <input type="text" class="form-control" placeholder="输入jar包全名称(举例):xx.jar" aria-describedby="basic-addon1">
-</div>
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon2"> <span class="glyphicon glyphicon-ruble" aria-hidden="true"></span></span>
-    <input type="text" class="form-control" placeholder="进程路径（默认）:/usr/local/mybash/" aria-describedby="basic-addon1">
-</div>
-<div class="input-group">
-    <span class="input-group-addon" id="basic-addon3"> <span class="glyphicon glyphicon-bell" aria-hidden="true"></span></span>
-    <input type="text" class="form-control" placeholder="是否守护进程" aria-describedby="basic-addon1">
-</div>
-
-<div class="col-lg-6">
-    <div class="input-group">
-      <span class="input-group-addon">
-        <input type="radio" aria-label="...">
-      </span>
-        <input type="text" class="form-control" aria-label="...">
-    </div><!-- /input-group -->
-</div><!-- /.col-lg-6 -->
-
-
-<!--===============================================================================================================-->
-<div>
-    <h2 class="sub-header">系统参数修改</h2>
-    <div class="table-responsive">
-        <!--                /proc/list_all监控所有进程-->
-        <table class="table table-striped" >
-            <thead>
-            <tr>
-                <th>扫描间隔</th>
-                <th>日志留存时间</th>
-                <th>是否激活</th>
-                <th>服务器ip</th>
-                <th>提醒联系人</th>
-                <th>更新时间</th>
-            </tr>
-            </thead>
-            <hr>
-            <tbody>
-            <tr th:each="params:${sys_params}">
-                <td th:text="${sys_params.scanDelay}">扫描间隔</td>
-                <td th:text="${sys_params.keepLogTime}">保留日志时间长，单位小时</td>
-                <td th:text="${sys_params.isActive}">是否激活</td>
-                <td th:text="${sys_params.ips}">服务器ip</td>
-                <td th:text="${sys_params.contact}">提醒联系人</td>
-                <td th:text="${sys_params.pmtUpdate}">更新时间</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
-
-系统参数修改测试部分
-
-<div>
-
-    ams(Integer scanDelay,Integer keepLogTime,String contact,Model model){
-    <form class="form-signin">
-        <h2 class="form-signin-heading center-block" >系统参数修改</h2>
-        <label for="scanDelay" class="sr-only">扫描等待时间</label>
-        <input type="text" id="scanDelay" class="form-control" placeholder="输入等待扫描时间（单位秒）" required="" autofocus="">
-        <label for="inputMobile" class="sr-only">日志保留时间</label>
-        <input type="text" id="inputMobile" class="form-control" placeholder="请输入用户名" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">输入密码</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">登 录</button>
-    </form>
-
-</div>
-
-<!--===============================================================================================================-->
-服务器消息监听
+TestWebSocket
 <input  id="text" type="text" />
-<button onclick="send()">SEND MESSAGE</button>
-<button onclick="closeWebSocket()">CLOSE</button>
+<button οnclick="send()">SEND MESSAGE</button>
+<button οnclick="closeWebSocket()">CLOSE</button>
 <div id="message"></div>
 
 <div class="footer navbar-fixed-bottom center-block">
     <br>
-    <hr><hr><br>
+    <hr>
+    <hr>
+    <br>
     大庆聚宝科技有限公司
     <br><br><br>
 
-    <footer th:fragment="~{templates/fragment_realy_process_table.html}"></footer>
-    <footer th:fragment="~{templates/fragment_process_table.html}"></footer>
 </div>
-<!-- Bootstrap core JavaScript-->
+<!-- Bootstrap core JavaScript
+================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
@@ -203,17 +156,15 @@
     //判断当前浏览器是否支持WebSocket
     if('WebSocket' in window){
         //连接WebSocket节点
-        websocket = new WebSocket("ws://localhost:8077/productWebSocket/001");
+        websocket = new WebSocket("ws://localhost:8066/productWebSocket/001");
     }
     else{
         alert('Not support websocket')
     }
-
     //连接发生错误的回调方法
     websocket.onerror = function(){
         setMessageInnerHTML("error");
     };
-
     //连接成功建立的回调方法
     websocket.onopen = function(event){
         setMessageInnerHTML("open");
@@ -224,12 +175,10 @@
         setMessageInnerHTML(event.data);
     }
 
-
     //连接关闭的回调方法
     websocket.onclose = function(){
         setMessageInnerHTML("close");
     }
-
     //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
     window.onbeforeunload = function(){
         websocket.close();
@@ -241,7 +190,8 @@
     }
 
     //关闭连接
-    function closeWebSocket(){websocket.close();
+    function closeWebSocket(){
+        websocket.close();
     }
 
     //发送消息
@@ -250,5 +200,4 @@
         websocket.send(message);
     }
 </script>
-
 </html>

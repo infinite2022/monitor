@@ -16,4 +16,5 @@ public interface IProjRoleService {
 
     //查询(deleted：null=all,1=normal,0=deleted)
     List<Proj1Role> getAllByDeleted(Integer deleted);
+    Proj1Role getByObject(Proj1Role proj1Role);
 }

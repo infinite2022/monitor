@@ -8,7 +8,7 @@ import java.util.List;
 public interface IProjProcessService {
 
     //查询所有的
-    List<Proj1Process> getAllProcess(Integer deleted);
+    List<Proj1Process> getAllProcess(Integer deleted,Integer daemon);
     //查询：指定状态的进程(不处理已删除的对象)
     List<Proj1Process> getByStatus(Integer status);
     //查询：根据名称查询

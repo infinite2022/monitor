@@ -1,0 +1,31 @@
+<!--   接口：/params/select,属性名：sys_params  -->
+<h2 class="sub-header">系统参数修改</h2>
+<div class="table-responsive">
+    <!--                /proc/list_all监控所有进程-->
+    <table class="table table-striped" >
+        <thead>
+        <tr>
+            <th>扫描间隔</th>
+            <th>日志留存时间</th>
+            <th>是否激活</th>
+            <th>服务器ip</th>
+            <th>提醒联系人</th>
+            <th>更新时间</th>
+        </tr>
+        </thead>
+        <hr>
+        <tbody>
+        <tr th:each="param:${sys_params}">
+            <td th:text="${sys_param.scanDelay}">扫描间隔</td>
+            <td th:text="${sys_param.keepLogTime}">保留日志时间长，单位小时</td>
+            <td th:text="${sys_param.isActive}">是否激活</td>
+            <td th:text="${sys_param.ips}">服务器ip</td>
+            <td th:text="${sys_param.contact}">提醒联系人</td>
+            <td th:text="${sys_param.pmtUpdate}">更新时间</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a  th:href="@{/prog/restart(filename=${log.pname})}">参数修改</a>
+
+</div>

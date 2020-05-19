@@ -68,5 +68,16 @@ public class ProjRoleService implements IProjRoleService {
             return proj1RoleMapper.selectByExample(null);
         }
     }
+    @Override
+    public Proj1Role getByObject(Proj1Role proj1Role){
+        proj1RoleExample = new Proj1RoleExample();
+        Proj1RoleExample.Criteria criteria = proj1RoleExample.createCriteria();
+        criteria.andMobileEqualTo(proj1Role.getMobile());
+        criteria.andPasswordEqualTo(proj1Role.getPassword());
+
+        if(proj1RoleMapper.selectByExample(proj1RoleExample)!=null)
+            return proj1RoleMapper.selectByExample(proj1RoleExample).get(0);
+        return null;
+    }
 
 }

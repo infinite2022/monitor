@@ -1,0 +1,25 @@
+<!--   接口：/proc/list_all,属性名：process  -->
+
+<form class="form-signin" action="dashboard.html" th:action="@{/proc/add}" method="POST">
+
+    <h2 class="form-signin-heading center-block" >增加托管程序文件</h2>
+    <label for="pname" class="sr-only">jar包名称</label>
+    <input type="text" id="pname" class="form-control" placeholder="举例：xx.jar" required="" autofocus="">
+    <br>
+    <label for="fpath" class="sr-only">ecs绝对路径</label>
+    <input type="text" id="fpath" class="form-control" placeholder="默认：/usr/local/mybash/" required="" autofocus="">
+    <br>
+    <label for="daemon" class="sr-only">daemon值</label>
+    <input type="text" id="daemon" class="form-control" placeholder="(1守护进程形式，0非)" required="" autofocus="">
+    <br>
+    <label for="deleted" class="sr-only">deleted值</label>
+    <input type="text" id="deleted" class="form-control" placeholder="0正常，1非" required="" autofocus="">
+    <br>
+
+    <label for="mobile" class="sr-only">输入用户手机号</label>
+    <input type="text" id="mobile" class="form-control" placeholder="输入用户手机号" required="" autofocus="">
+    <label for="password" class="sr-only">输入密码</label>
+    <input type="password" id="password" class="form-control" placeholder="Password" required="">
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">提交</button>
+</form>
