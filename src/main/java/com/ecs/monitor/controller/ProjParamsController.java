@@ -20,21 +20,28 @@ public class ProjParamsController {
 
 
     @RequestMapping("/update")
-    @ResponseBody
     public String updateParams(Integer scanDelay,Integer keepLogTime,String contact,Model model){
-
-        if(scanDelay == null && keepLogTime == null && contact == null)
-            return "输入参数有误";
         Proj1Params pp = new Proj1Params();
+        if(scanDelay == null && keepLogTime == null && contact == null){
+
+            model.addAttribute("sys_params",pp);
+            return "params";
+        }
         pp.setScanDelay(scanDelay);
         pp.setKeepLogTime(keepLogTime);
         pp.setContact(contact);
         projParamsService.updateParams(pp);
 
-        model.addAttribute("result","修改完成，参数已更新");
-        return "sys_update";
+        Proj1Params newOne= projParamsService.selectOne();
+
+        model.addAttribute("sys_params",newOne);
+        return "params";
     }
 
+    @RequestMapping("/select")
+    public String mobify(){
+        return "params_modify";
+    }
     @RequestMapping("/select")
     public String selectOne(Model model){
         Proj1Params proj1Params= projParamsService.selectOne();
@@ -47,7 +54,7 @@ public class ProjParamsController {
             proj1Params.setPmtUpdate(new Date());
         }
         model.addAttribute("sys_params",proj1Params);
-        return "setting";
+        return "params";
     }
 
 

@@ -32,10 +32,9 @@
 </head>
 
 <body>
-
-<div class="container">
-
-    <form class="form-signin">
+<div class="color-rect-pane html-editor-align-center">
+    <!--此处要写成method="POST"，不能写成th:method="POST"-->
+    <form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="POST">
         <h2 class="form-signin-heading center-block" >登录页面</h2>
         <label for="inputMobile" class="sr-only">输入手机号码</label>
         <input type="text" id="inputMobile" class="form-control" placeholder="请输入用户名" required="" autofocus="">
@@ -50,11 +49,10 @@
     </form>
     <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">注 册</button>
 
-</div> <!-- /container -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</div>
 
+</body>
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
-</body></html>
+</html>

@@ -8,7 +8,7 @@ public interface IProjRoleService {
     //添加用户
     void addRole(Proj1Role proj1Role);
     //删除用户
-    void delByMobile(String mobile,boolean disableDisplayOnly);
+    void delByMobile(String mobile, boolean disableDisplayOnly);
     //通过手机号修改用户
     void modByMobile(Proj1Role proj1Role);
     //查询

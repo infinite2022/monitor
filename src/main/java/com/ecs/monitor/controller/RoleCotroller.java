@@ -52,6 +52,7 @@ public class RoleCotroller {
                 map.put("msg","用户名或密码错误");
                 return "login";
             }
+        System.out.println(mobile+"password"+password);
             Proj1Role proj1Role = new Proj1Role();
             proj1Role.setMobile(mobile);
             proj1Role.setPassword(password);

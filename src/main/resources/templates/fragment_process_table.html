@@ -1,6 +1,6 @@
+<!--   接口：/proc/list_all,属性名：process  -->
 <h2 class="sub-header">进程文件管理</h2>
 <div class="table-responsive">
-    <!--                /proc/list_all监控所有进程-->
     <table class="table table-striped" >
         <thead>
         <tr>
@@ -28,8 +28,7 @@
             <td th:text="${proc.deleted}">日否存在</td>
             <td th:text="${proc.pmtCreate}">创建时间</td>
             <td th:text="${proc.pmtUpdate}">更新时间</td>
-            <td><a  th:href="@{/proc/deleteOne(${proc.id})}">删除</a></td>
-
+            <td><a th:href="@{/proc/del_item(id=${proc.id})}">删除本项</a></td>
         </tr>
         </tbody>
     </table>

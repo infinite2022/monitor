@@ -9,7 +9,7 @@ public interface IProjLogService {
 
     void insert(Proj1Log proj1Log);
     List<Proj1Log> selectByTime(Date startTime, Date stopTime);
-    List<Proj1Log> selectByDays(Date startTime,Date stopTime);
-    void deleteByTime(Date time,Integer condition,Boolean dateType);
+    List<Proj1Log> selectByDays(Date startTime, Date stopTime);
+    void deleteByTime(Date time, Integer condition, Boolean dateType);
 
 }

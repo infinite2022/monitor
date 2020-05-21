@@ -11,5 +11,5 @@ public interface IProjParamsService {
     Proj1Params selectOne();
 
     List<String> parseList(String s);
-    Proj1Params paramsPatch(Proj1Params source,Proj1Params target);
+    Proj1Params paramsPatch(Proj1Params source, Proj1Params target);
 }
