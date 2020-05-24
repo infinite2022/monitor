@@ -16,31 +16,27 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 @Component
-@ServerEndpoint(value = "/productWebSocket/{userId}", configurator = MyEndpointConfigure.class)
-public class ProductWebSocket {
+@ServerEndpoint(value = "/sys_msg/{userId}", configurator = MyEndpointConfigure.class)
+public class SystemNotify {
 
-    // 安全线程：在线人数
-    private static final AtomicInteger OnlineCount = new AtomicInteger(0);
+    private static final AtomicInteger OnlineCount = new AtomicInteger(0); //安全线程：在线人数
 
-    // concurrent包的线程安全Set，用来存放客户端对应的ProductWebSocket对象。
-    private static CopyOnWriteArraySet<ProductWebSocket> webSocketSet = new CopyOnWriteArraySet<ProductWebSocket>();
+    private static CopyOnWriteArraySet<SystemNotify> webSocketSet = new CopyOnWriteArraySet<SystemNotify>();// concurrent包的线程安全Set，用来存放客户端对应的ProductWebSocket对象。
 
-    // 与某个客户端的连接会话，需要通过它来给客户端发送数据
-    private Session session;
+    private Session session;    //与客户端的连接会话
 
-
-    private Logger log = LoggerFactory.getLogger(ProductWebSocket.class);
+    private Logger log = LoggerFactory.getLogger(SystemNotify.class);
 
 
     @OnOpen
     public void onOpen(@PathParam("userId")String userId, Session session) {
-        log.info("有用启进入，id：" + userId);
+        log.info("current time__"+System.currentTimeMillis()+"__manager into system,user id：" + userId);
         this.session = session;
         webSocketSet.add(this); // 加入set中
-        addOnlineCount(); // 在线数加1
+        addOnlineCount();       // 在线数加1
         if(userId!=null) {
             List<String> totalPushMsgs = new ArrayList<String>();
-            totalPushMsgs.add(userId+"成功连接-"+"-在线人数："+getOnlineCount());
+            totalPushMsgs.add(userId+"connect success("+getOnlineCount()+")");
 
 
             if(totalPushMsgs != null && !totalPushMsgs.isEmpty()) {
@@ -50,32 +46,30 @@ public class ProductWebSocket {
 
     }
 
-
     @OnClose
     public void onClose() {
-        log.info("一个客户端退出连接");
+        log.info("current time__"+System.currentTimeMillis()+"__manager into system,user：" + this);
         webSocketSet.remove(this); // 从set中删除
-        subOnlineCount(); // 在线数减1
+        subOnlineCount(); // 登录管理者数量
     }
 
 
     @OnMessage
     public void onMessage(String message, Session session) {
-        log.info("收到客户端消息："+message);
-        System.out.println("收到客户端消息："+message);
+        log.info("current time__"+System.currentTimeMillis()+"__get client message："+message); //收消息
     }
 
 
     @OnError
     public void onError(Session session, Throwable error) {
-        log.error("websocket出现错误");
+        log.error("current time__"+System.currentTimeMillis()+"websocket onError");
         error.printStackTrace();
     }
 
     public void sendMessage(String message) {
         try {
             this.session.getBasicRemote().sendText(message);
-            log.info("推送成功-消息内容：" + message);
+            log.info("current time__"+System.currentTimeMillis()+"service send message：" + message);//服单发
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,9 +77,9 @@ public class ProductWebSocket {
 
 
     public static void sendInfo(String message) throws IOException {
-        for (ProductWebSocket productWebSocket : webSocketSet) {
-            System.out.println("服务器群发消息内容："+message);
-            productWebSocket.sendMessage(message);
+        for (SystemNotify notify : webSocketSet) {
+            System.out.println("service broadcast ："+message); //服群发
+            notify.sendMessage(message);
         }
     }
 

@@ -6,10 +6,7 @@ import com.ecs.monitor.service.service_interface.IProjRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -25,6 +22,31 @@ public class RoleCotroller {
 
     private Proj1RoleExample proj1RoleExample;
 
+    @PostMapping("/login")
+    public String login(@RequestParam("mobile") String mobile, @RequestParam("password") String password, Map<String,Object> map, HttpSession session){
+
+        System.out.println("提交的用户名，密码："+mobile+","+password);
+        if(mobile == null || password == null){
+            map.put("msg","用户名或密码错误");
+            return "login";
+        }
+        System.out.println(mobile+"password"+password);
+        Proj1Role proj1Role = new Proj1Role();
+        proj1Role.setMobile(mobile);
+        proj1Role.setPassword(password);
+        if(projRoleService.getByObject(proj1Role) != null){
+            session.setAttribute("user",mobile);//加入session
+            return "redirect:/params/update";  //"redirect:/main";
+        }
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("user");
+        return "login";
+    }
+//====================================================================================
     @RequestMapping("/add")
     @ResponseBody
     public String addUser(@RequestParam(name ="mobile",defaultValue = "",required = true) String mobile,
@@ -45,24 +67,8 @@ public class RoleCotroller {
         return "add_success";
     }
 
-    @PostMapping("/login")
-    public String login(@RequestParam("mobile") String mobile, @RequestParam("password") String password, Map<String,Object> map, HttpSession session){
 
-            if(mobile == null || password == null){
-                map.put("msg","用户名或密码错误");
-                return "login";
-            }
-        System.out.println(mobile+"password"+password);
-            Proj1Role proj1Role = new Proj1Role();
-            proj1Role.setMobile(mobile);
-            proj1Role.setPassword(password);
-            if(projRoleService.getByObject(proj1Role) != null){
-                session.setAttribute("loginUser",mobile);//加入session
-                return "main";  //"redirect:/main";
-            }
-        return "login";
-    }
-
+//======================================================================================
     @RequestMapping("/del_by_mobile")
     @ResponseBody
     public String deleteByMobile(@RequestParam(name ="mobile",defaultValue = "",required = true) String mobile,
@@ -108,22 +114,5 @@ public class RoleCotroller {
         System.out.println(deleted);
        //projRoleService.getAllByDeleted(deleted);
        return "proc";
-    }
-    @RequestMapping("/test0")
-    public String test0(Map<String,Object> map){
-        List<Proj1Role> allByDeleted = projRoleService.getAllByDeleted(null);
-
-        map.put("hello","<h1>登录成功</h1>");
-        map.put("role",allByDeleted);
-        return "proc";
-    }
-    @RequestMapping("/test1")
-    public String test1(Model model){
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("sina");
-        strings.add("123");
-        model.addAttribute("items",strings);
-
-        return "test1";
     }
 }

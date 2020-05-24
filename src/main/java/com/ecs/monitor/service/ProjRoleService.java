@@ -75,8 +75,12 @@ public class ProjRoleService implements IProjRoleService {
         criteria.andMobileEqualTo(proj1Role.getMobile());
         criteria.andPasswordEqualTo(proj1Role.getPassword());
 
-        if(proj1RoleMapper.selectByExample(proj1RoleExample)!=null)
-            return proj1RoleMapper.selectByExample(proj1RoleExample).get(0);
+        List<Proj1Role> proj1Role1 = proj1RoleMapper.selectByExample(proj1RoleExample);
+        if(proj1Role1.size() != 0){
+            System.out.println(proj1Role1.get(0).toString());
+            return proj1Role1.get(0);
+        }
+
         return null;
     }
 

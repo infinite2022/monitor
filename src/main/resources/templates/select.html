@@ -59,7 +59,7 @@
                         <a href="#"><span class="glyphicon glyphicon-equalizer"/>参数设置</a>
                     </li>
                     <li>
-                        <a th:href="@{/select_all}"><span class="glyphicon glyphicon-indent-left"/>程序管理</a><!--程序消息，错误消息-->
+                        <a href="#"><span class="glyphicon glyphicon-indent-left"/>历史记录</a><!--程序消息，错误消息-->
                     </li>
                 </ul>
 
@@ -114,50 +114,55 @@
         <div class="col-sm-8 col-sm-offset-2">
             <div class="style_page1">
 
-                <div th:if="${sys_params != null}" >
-
-                    <h2 class="text-center">当前服务器监管参数</h2>
-
+                <div th:if="${process != null}" >
+<!--                    xx-->
+                    <h2 class="text-center">进程文件管理</h2>
                     <div class="table-responsive">
-                        <!--                /proc/list_all监控所有进程-->
                         <table class="table table-striped" >
                             <thead>
                             <tr>
-                                <th>扫描间隔</th>
-                                <th>日志留存时间</th>
-                                <th>是否激活</th>
-                                <th>服务器ip</th>
-                                <th>提醒联系人</th>
+                                <th>id</th>
+                                <th>进程号</th>
+                                <th>进程名称</th>
+                                <th>进程路径</th>
+                                <th>状态</th>
+                                <th>是否守护进程</th>
+                                <th>删除标记</th>
+                                <th>创建时间</th>
                                 <th>更新时间</th>
+                                <th>delete</th>
+                                <th>modify</th>
                             </tr>
                             </thead>
                             <hr>
                             <tbody>
-                            <tr th:each="item:${sys_params}">
-                                <td th:text="${item.scanDelay}">扫描间隔</td>
-                                <td th:text="${item.keepLogTime}">保留日志时间长，单位小时</td>
-                                <td th:text="${item.isActive}">是否激活</td>
-                                <td th:text="${item.ips}">服务器ip</td>
-                                <td th:text="${item.contact}">提醒联系人</td>
-                                <td th:text="${item.pmtUpdate}">更新时间</td>
+                            <tr th:each="proc:${process}">
+                                <td th:text="${proc.id}"></td>
+                                <td th:text="${proc.pid}">进程号</td>
+                                <td th:text="${proc.pname}">进程名称</td>
+                                <td th:text="${proc.fpath}">进程路径</td>
+                                <td th:text="${proc.status}">状态</td>
+                                <td th:text="${proc.daemon}">是否守护进程</td>
+                                <td th:text="${proc.deleted}">日否存在</td>
+                                <td th:text="${proc.pmtCreate}">创建时间</td>
+                                <td th:text="${proc.pmtUpdate}">更新时间</td>
+                                <td><a th:href="@{/proc/del_one(id=${proc.id})}">删除</a></td>
+                                <td><a th:href="@{/proc/mod_one(id=${proc.id})}">修改</a></td>
                             </tr>
                             </tbody>
                         </table>
-
-
-
-
                     </div>
+<!--                   yy-->
                 </div>
             </div>
 
 
-    </div>
+        </div>
 
         <div class="row ">
             <div class="col-sm-8 col-sm-offset-2">
                 <button class="btn btn-lg btn-primary btn-block " onclick="location.href='/params/modify'">
-                    <span class="glyphicon glyphicon-warning-sign"/>修改系统参数
+                    <span class="glyphicon glyphicon-warning-sign"/>新增文件
                 </button>
             </div>
         </div>
@@ -170,35 +175,35 @@
         </div>
 
 
-</div>
+    </div>
 
 
-<div class="footer panel-footer navbar-fixed-bottom">
-    <h3 class="text-center">大庆聚宝科技有限公司</h3>
-    <h4 class="text-center">www.jubaoapp.com</h4>
+    <div class="footer panel-footer navbar-fixed-bottom">
+        <h3 class="text-center">大庆聚宝科技有限公司</h3>
+        <h4 class="text-center">www.jubaoapp.com</h4>
 
 
-</div>
+    </div>
 
-<!--        ==================================================          -->
-<!--服务器消息-->
-<!--<input  id="text" type="text" />-->
-<!--<button onclick="send()">SEND MESSAGE</button>-->
-<!--<button onclick="closeWebSocket()">CLOSE</button>-->
-<!--<button onclick="openWebSocket()">开启</button>-->
-<!--<div id="message"></div>-->
+    <!--        ==================================================          -->
+    <!--服务器消息-->
+    <!--<input  id="text" type="text" />-->
+    <!--<button onclick="send()">SEND MESSAGE</button>-->
+    <!--<button onclick="closeWebSocket()">CLOSE</button>-->
+    <!--<button onclick="openWebSocket()">开启</button>-->
+    <!--<div id="message"></div>-->
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-<script src="../../assets/js/vendor/holder.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-<!--        ==================================================          -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!--        ==================================================          -->
 
 
 

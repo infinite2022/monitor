@@ -3,12 +3,9 @@ package com.ecs.monitor.controller;
 import com.ecs.monitor.bean.Proj1Log;
 import com.ecs.monitor.bean.Proj1Process;
 import com.ecs.monitor.common.BashFileName;
-import com.ecs.monitor.service.ProductWebSocket;
-import com.ecs.monitor.service.ProjLogService;
-import com.ecs.monitor.service.ProjProcessService;
+import com.ecs.monitor.service.SystemNotify;
 import com.ecs.monitor.service.service_interface.IProjLogService;
 import com.ecs.monitor.service.service_interface.IProjProcessService;
-import com.ecs.monitor.utils.BashExecutor;
 import com.ecs.monitor.utils.utils_interface.IBashExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 @Controller
 @RequestMapping("prog")
@@ -44,12 +40,12 @@ public class ProgramAndLogsController {
                 bashExecutor.startMysqlOrTomcat(BashFileName.dockerRunMysql);
             }
         }
-        ProductWebSocket.sendInfo("the"+fileName+"process start complete!!" );
+        SystemNotify.sendInfo("the"+fileName+"process start complete!!" );
     }
     @RequestMapping("/killone")
     public void stop(Integer pid) throws IOException {
         bashExecutor.killProcess(pid);
-        ProductWebSocket.sendInfo("the"+pid+"process is killed!!" );
+        SystemNotify.sendInfo("the"+pid+"process is killed!!" );
     }
 
     @RequestMapping("/restart")
@@ -61,7 +57,7 @@ public class ProgramAndLogsController {
                 boolean b = bashExecutor.killProcess(byPname.get(i).getPid());
             }
             start(fileName);
-            ProductWebSocket.sendInfo("the"+fileName+"process is killed!!" );
+            SystemNotify.sendInfo("the"+fileName+"process is killed!!" );
         }
     }
 
@@ -69,7 +65,7 @@ public class ProgramAndLogsController {
     public String log(Model model){
         List<Proj1Log> proj1Logs = projLogService.selectByTime(new Date(), null);
         model.addAttribute("logs",proj1Logs);
-        return "logs";
+        return "main";
     }
     @RequestMapping("/history_log")
     public String hostoryLog(){

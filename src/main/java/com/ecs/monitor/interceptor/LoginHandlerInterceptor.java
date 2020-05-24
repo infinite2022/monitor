@@ -10,7 +10,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object obj = request.getSession().getAttribute("loginUser");
+        Object obj = request.getSession().getAttribute("user");
         if(obj == null){
             //没有登录，设置错误信息并转发到登录页面
             request.setAttribute("msg","请先登陆，获取权限！！");

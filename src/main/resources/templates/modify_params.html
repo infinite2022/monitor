@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>聚宝科技-服务器程序页面</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .style_page1{
+            padding-top: 150px;
+        }
+        .style_page2{
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="110">
+<!--        ==================================================          -->
+
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <h1>
+                大庆聚宝科技有限公司
+            </h1>
+
+            <div class="collapse navbar-collapse js-navbar-scrollspy" id="custScrollspy">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">聚宝科技</a>
+                </div>
+                <ul class="nav navbar-nav" id="mytab">
+                    <li class="active">
+
+                        <a href="#"><span class="glyphicon glyphicon-equalizer"/>参数设置</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-indent-left"/>历史记录</a><!--程序消息，错误消息-->
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-left" role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="搜索">
+                    </div>
+                    <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-search"/>搜索</button>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="">错误消息<span class="badge badge-warning" id="error_msg">30</span></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的<span class="caret"></span></a>
+                        <ul class="dropdown-menu label-info" role="menu">
+                            <li>
+                                <a href="#">系统设置</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a th:href="@{/user/login}">登录</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/user/logout}">退出</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="row ">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="style_page1">
+
+                <h2 class="text-center">修改服务器监管参数</h2>
+
+                <form th:action="@{/params/update_obj}" method="post">
+                    <table class="form-group">
+                        <tr>
+                            <td>id:</td>
+                            <td>
+                                <span th:text="${sys_params.id}"/>
+                                <input type="hidden" name="id" th:value="${sys_params.id}"/><!--隐藏域中，保存id-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>name:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="scanDelay" th:value="${sys_params.scanDelay}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>keepLogTime:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="keepLogTime" th:value="${sys_params.keepLogTime}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>isActive:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="isActive" th:value="${sys_params.isActive}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ips:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="ips" th:value="${sys_params.ips}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>contact:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="contact" th:value="${sys_params.contact}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>pmtUpdate:</td>
+                            <td>
+                                <span th:text="${#dates.format(sys_params.pmtUpdate,'yyyy/MM/dd')}"/>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">修改</button>
+                </form><!--修改系统参数表单-->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer panel-footer navbar-fixed-bottom">
+        <h3 class="text-center">大庆聚宝科技有限公司</h3>
+        <h4 class="text-center">www.jubaoapp.com</h4>
+
+
+    </div>
+
+    <!--        ==================================================          -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!--        ==================================================          -->
+
+
+
+</body>
+
+<script>
+    //可选中状态导航栏
+    $("#mytab a").click(function(e){
+        e.preventDefault();
+        $(this).tab("show");
+    });
+</script>
+</html>

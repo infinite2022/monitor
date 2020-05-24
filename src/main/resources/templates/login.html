@@ -4,54 +4,75 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--01 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>聚宝科技-服务器程序页面</title>
 
-    <!--02 Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--03 IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    <!--04 Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
 
-    <!--05 Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--06[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
-    <!--07 HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--08[if lt IE 9]>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
-<div class="color-rect-pane html-editor-align-center">
-    <!--此处要写成method="POST"，不能写成th:method="POST"-->
-    <form class="form-signin" action="dashboard.html" th:action="@{/user/login}" method="POST">
-        <h2 class="form-signin-heading center-block" >登录页面</h2>
-        <label for="inputMobile" class="sr-only">输入手机号码</label>
-        <input type="text" id="inputMobile" class="form-control" placeholder="请输入用户名" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">输入密码</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">登 录</button>
-    </form>
-    <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="">注 册</button>
+<!--        ==================================================          -->
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-</div>
+<div class="container">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form class="form-signin" th:action="@{/user/login}" method="post">
+                <h2 class="form-signin-heading">服务器管理员登录</h2>
+                <label for="inputMobile" class="sr-only">Phone number</label>
+                <input type="mobile" id="inputMobile" class="form-control" placeholder="Phone number" autofocus="" name="mobile">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me">记住我
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+            </form>
+        </div>
+    </div>
+
+
+</div> <!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<script src="../../assets/js/vendor/holder.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+<!--        ==================================================          -->
+
 
 </body>
 

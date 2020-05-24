@@ -52,7 +52,7 @@ public class ProjParamsService implements IProjParamsService {
         Proj1Params pp = null;
         if(pps != null){
             pp = paramsPatch(pps.get(0),proj1Params);
-            proj1ParamsMapper.updateByPrimaryKey(pp);
+            proj1ParamsMapper.updateByPrimaryKey(proj1Params);
         }else{
             proj1ParamsMapper.insert(proj1Params);
         }

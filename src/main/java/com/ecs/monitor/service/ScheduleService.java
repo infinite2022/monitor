@@ -10,8 +10,6 @@ import com.ecs.monitor.utils.utils_interface.IBashExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.util.Date;
@@ -32,6 +30,9 @@ public class ScheduleService {
     @Autowired
     IProjLogService projLogService;
 
+    @Autowired
+    SystemNotify systemNotify;
+
     private List<Proj1Process> enableAndDaemonList = null;
     private int tryStartTimes = 3;//连续尝试启动次数
     private static final int delay = 5000;
@@ -42,6 +43,8 @@ public class ScheduleService {
     @Scheduled(fixedDelay = delay)
     public void loopService() throws IOException {
         System.out.println("the ecs monitor sys run(delay):"+delay);
+        systemNotify.sendInfo(new Date()+"new service message!!");
+
         if(processLocked = false);
             scanAndResume();
     }
@@ -68,7 +71,7 @@ public class ScheduleService {
                 proj1Log.setPmtUpdate(new Date());
 
                 projLogService.insert(proj1Log);
-                ProductWebSocket.sendInfo("系统消息："+fileName+"__未检测到进程！！！");
+                systemNotify.sendInfo("系统消息："+fileName+"__未检测到进程！！！");
             }else{
                 //进程号不存在
                 for(int j=0;j<tryStartTimes;i++){
@@ -82,7 +85,7 @@ public class ScheduleService {
 
                         projLogService.insert(proj1Log);
                         j = tryStartTimes;  //终止循环条件
-                        ProductWebSocket.sendInfo("系统消息："+fileName+"__重启成功("+j+"/"+tryStartTimes+")！！！");
+                        systemNotify.sendInfo("系统消息："+fileName+"__重启成功("+j+"/"+tryStartTimes+")！！！");
                     }else{
                         proj1Log = new Proj1Log();
                         proj1Log.setPid(0);
@@ -90,7 +93,7 @@ public class ScheduleService {
                         proj1Log.setPname(fileName);
 
                         proj1Log.setPmtUpdate(new Date());
-                        ProductWebSocket.sendInfo("系统消息："+fileName+"__启启失败("+j+"/"+tryStartTimes+")！！！");
+                        systemNotify.sendInfo("系统消息："+fileName+"__启启失败("+j+"/"+tryStartTimes+")！！！");
                     }
                 }
             }

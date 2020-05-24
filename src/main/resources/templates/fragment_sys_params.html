@@ -15,13 +15,13 @@
         </thead>
         <hr>
         <tbody>
-        <tr th:each="param:${sys_params}">
-            <td th:text="${sys_param.scanDelay}">扫描间隔</td>
-            <td th:text="${sys_param.keepLogTime}">保留日志时间长，单位小时</td>
-            <td th:text="${sys_param.isActive}">是否激活</td>
-            <td th:text="${sys_param.ips}">服务器ip</td>
-            <td th:text="${sys_param.contact}">提醒联系人</td>
-            <td th:text="${sys_param.pmtUpdate}">更新时间</td>
+        <tr th:each="paramx:${sys_params}">
+            <td th:text="${paramx.scanDelay}">扫描间隔</td>
+            <td th:text="${paramx.keepLogTime}">保留日志时间长，单位小时</td>
+            <td th:text="${paramx.isActive}">是否激活</td>
+            <td th:text="${paramx.ips}">服务器ip</td>
+            <td th:text="${paramx.contact}">提醒联系人</td>
+            <td th:text="${paramx.pmtUpdate}">更新时间</td>
         </tr>
         </tbody>
     </table>
