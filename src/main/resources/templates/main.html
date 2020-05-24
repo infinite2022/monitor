@@ -56,10 +56,10 @@
                 <ul class="nav navbar-nav" id="mytab">
                     <li class="active">
 
-                        <a href="#"><span class="glyphicon glyphicon-equalizer"/>参数设置</a>
+                        <a th:href="@{/params/update}"><span class="glyphicon glyphicon-equalizer"/>参数设置</a>
                     </li>
                     <li>
-                        <a th:href="@{/select_all}"><span class="glyphicon glyphicon-indent-left"/>程序管理</a><!--程序消息，错误消息-->
+                        <a th:href="@{/proc/select_all}"><span class="glyphicon glyphicon-indent-left"/>程序管理</a><!--程序消息，错误消息-->
                     </li>
                 </ul>
 
@@ -144,13 +144,9 @@
                             </tbody>
                         </table>
 
-
-
-
                     </div>
                 </div>
             </div>
-
 
     </div>
 
@@ -168,25 +164,20 @@
 
             </div>
         </div>
-
-
 </div>
 
 
 <div class="footer panel-footer navbar-fixed-bottom">
-    <h3 class="text-center">大庆聚宝科技有限公司</h3>
-    <h4 class="text-center">www.jubaoapp.com</h4>
-
-
+    <h3 class="text-center">大庆聚宝科技有限公司</h3>  <h4 class="text-center">www.jubaoapp.com</h4>
 </div>
 
 <!--        ==================================================          -->
-<!--服务器消息-->
-<!--<input  id="text" type="text" />-->
-<!--<button onclick="send()">SEND MESSAGE</button>-->
-<!--<button onclick="closeWebSocket()">CLOSE</button>-->
-<!--<button onclick="openWebSocket()">开启</button>-->
-<!--<div id="message"></div>-->
+服务器消息
+<input  id="text" type="text" />
+<button onclick="send()">SEND MESSAGE</button>
+<button onclick="closeWebSocket()">CLOSE</button>
+<button onclick="openWebSocket()">开启</button>
+<div id="message"></div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -201,16 +192,26 @@
 <!--        ==================================================          -->
 
 
-
+    <embed src="/templates/12604.wav" autostart=false loop=false id="my_audio" align="center" border="0" width="1" height="1">
 </body>
 
-<script>
-    //可选中状态导航栏
-    $("#mytab a").click(function(e){
-        e.preventDefault();
-        $(this).tab("show");
-    });
-</script>
+<!--<script>-->
+<!--    //可选中状态导航栏-->
+<!--    $("#mytab a").click(function(e){-->
+<!--        e.preventDefault();-->
+<!--        $(this).tab("show");-->
+<!--    });-->
+<!--</script>-->
+<!--<scrip>-->
+<!--    $(function () {-->
+<!--    $("#myBar li").click(function (e) {-->
+<!--    e.preventDefault()-->
+<!--    $(this).tab('show')-->
+<!--    window.location.href = 'http://localhost:3000' + $(this).children('a').attr('href')-->
+<!--    })-->
+<!--    })-->
+<!--</scrip>-->
+
 
 <script type="text/javascript">
     var websocket = null;
@@ -265,9 +266,10 @@
     websocket.onopen = function(event){
         setMessageInnerHTML("open");}
 
-    //接收到消息的回调方法
+    // //接收到消息的回调方法
     websocket.onmessage = function(event){
-        setMessageInnerHTML(event.data);}
+        setMessageInnerHTML(event.data);
+    }
 
     //连接关闭的回调方法
     websocket.onclose = function(){
@@ -281,6 +283,14 @@
         err_count++;
         document.getElementById('message').innerHTML += innerHTML + '<br/>';
         document.getElementById('error_msg').innerHTML = err_count;
+        var audio=document.getElementById('my_audio');
+        if(audio == null){
+            console.log("音频文件获取失败");
+        }else{
+            console.log("得到音频文件"+audio);
+            document.getElementById('my_audio').play();
+        }
+
     }
     //关闭连接
     function closeWebSocket(){websocket.close();}

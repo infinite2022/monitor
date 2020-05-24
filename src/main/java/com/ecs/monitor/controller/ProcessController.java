@@ -6,16 +6,13 @@ import com.ecs.monitor.service.service_interface.IProjProcessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/params")
+@RequestMapping("/proc")
 public class ProcessController {
 
     @Autowired
@@ -23,9 +20,9 @@ public class ProcessController {
 
     //like=1:模糊
     @RequestMapping("/select_all")
-    public String getAllListByDeleted(Integer daemon, Model model){
+    public String getAllListByDeleted(Model model){
 
-        List<Proj1Process> allProcess = projProcessService.getAllProcess(0,daemon);
+        List<Proj1Process> allProcess = projProcessService.getAllProcess(null,null);
         model.addAttribute("process",allProcess);
         return "select";
     }
@@ -36,7 +33,13 @@ public class ProcessController {
 
         projProcessService.modByPrimaryKey(proj1Process.initUpdateDate());
 
-        return "redirect:/proc/select";
+        return "redirect:/proc/select_all";
+    }
+
+    @GetMapping("/add_onex")
+    public String insertObjx(){
+
+        return "procadd";
     }
 
     @PostMapping("/add_one")
@@ -44,16 +47,16 @@ public class ProcessController {
 
         projProcessService.insert(proj1Process.initDefault());
 
-        return "redirect:/proc/select";
+        return "redirect:/proc/select_all";
     }
     @RequestMapping("/del_one")
     public String delByPrimaryKey(Integer id){
         if(id == null)
             return "请求参数有误";
         projProcessService.delByPrimaryKey(id,true);
-        return "redirect:/proc/select";
+        return "redirect:/proc/select_all";
     }
-    @RequestMapping("/init_one")
+    @RequestMapping("/select_one")
     public String getByPrimaryKey(Integer id,Model model){
         if(id != null) {
             Proj1Process byPrimaryKey = projProcessService.getByPrimaryKey(id);

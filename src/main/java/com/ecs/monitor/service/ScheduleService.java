@@ -74,7 +74,7 @@ public class ScheduleService {
                 systemNotify.sendInfo("系统消息："+fileName+"__未检测到进程！！！");
             }else{
                 //进程号不存在
-                for(int j=0;j<tryStartTimes;i++){
+                //for(int j=0;j<tryStartTimes;i++){
                     if(resumeProcess(fileName)){
 
                         proj1Log = new Proj1Log();
@@ -84,8 +84,8 @@ public class ScheduleService {
                         proj1Log.setPmtUpdate(new Date());
 
                         projLogService.insert(proj1Log);
-                        j = tryStartTimes;  //终止循环条件
-                        systemNotify.sendInfo("系统消息："+fileName+"__重启成功("+j+"/"+tryStartTimes+")！！！");
+                        //j = tryStartTimes;  //终止循环条件
+                        //systemNotify.sendInfo("系统消息："+fileName+"__重启成功("+j+"/"+tryStartTimes+")！！！");
                     }else{
                         proj1Log = new Proj1Log();
                         proj1Log.setPid(0);
@@ -93,9 +93,9 @@ public class ScheduleService {
                         proj1Log.setPname(fileName);
 
                         proj1Log.setPmtUpdate(new Date());
-                        systemNotify.sendInfo("系统消息："+fileName+"__启启失败("+j+"/"+tryStartTimes+")！！！");
+                        //systemNotify.sendInfo("系统消息："+fileName+"__启启失败("+j+"/"+tryStartTimes+")！！！");
                     }
-                }
+                //}
             }
         }
         processLocked = false;

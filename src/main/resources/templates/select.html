@@ -147,7 +147,7 @@
                                 <td th:text="${proc.pmtCreate}">创建时间</td>
                                 <td th:text="${proc.pmtUpdate}">更新时间</td>
                                 <td><a th:href="@{/proc/del_one(id=${proc.id})}">删除</a></td>
-                                <td><a th:href="@{/proc/mod_one(id=${proc.id})}">修改</a></td>
+                                <td><a th:href="@{/proc/select_one(id=${proc.id})}">修改</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -159,24 +159,16 @@
 
         </div>
 
-        <div class="row ">
-            <div class="col-sm-8 col-sm-offset-2">
-                <button class="btn btn-lg btn-primary btn-block " onclick="location.href='/params/modify'">
-                    <span class="glyphicon glyphicon-warning-sign"/>新增文件
-                </button>
-            </div>
+        <div class="col-sm-8 col-sm-offset-2">
+            <button class="btn btn-lg btn-primary btn-block " onclick="location.href='/proc/add_onex'">
+                <span class="glyphicon glyphicon-warning-sign"/>增加托管进程文件
+            </button>
         </div>
-
-        <hr>
-        <div class="row ">
-            <div class="col-sm-2 col-sm-offset-8">
-
-            </div>
-        </div>
-
 
     </div>
 
+
+    <hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/><hr/>
 
     <div class="footer panel-footer navbar-fixed-bottom">
         <h3 class="text-center">大庆聚宝科技有限公司</h3>

@@ -113,52 +113,79 @@
     <div class="row ">
         <div class="col-sm-8 col-sm-offset-2">
             <div class="style_page1">
-
                 <h2 class="text-center">修改服务器监管参数</h2>
 
-                <form th:action="@{/params/update_obj}" method="post">
+                <form th:action="@{/proc/mod_one}" method="post">
                     <table class="form-group">
                         <tr>
                             <td>id:</td>
                             <td>
-                                <span th:text="${sys_params.id}"/>
-                                <input type="hidden" name="id" th:value="${sys_params.id}"/><!--隐藏域中，保存id-->
+                                <span th:text="${process.id}"/>
+                                <input type="hidden" name="id" th:value="${process.id}"/><!--隐藏域中，保存id-->
                             </td>
                         </tr>
+                        <tr>
+                            <td>pid:</td>
+                            <td>
+                                <span th:text="${process.pid}"/>
+                                <input type="hidden" name="pid" th:value="${process.pid}"/><!--隐藏域中，保存id-->
+                            </td>
+                        </tr>
+
                         <tr>
                             <td>name:</td>
                             <td>
-                                <input type="text" class="inputgri" name="scanDelay" th:value="${sys_params.scanDelay}"/>
+                                <span th:text="${process.pname}"/>
+                                <input type="hidden" name="pname" th:value="${process.pname}"/><!--隐藏域中，保存id-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>fpath:</td>
+                            <td>
+                                <span th:text="${process.fpath}"/>
+                                <input type="hidden" name="fpath" th:value="${process.fpath}"/><!--隐藏域中，保存id-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>status:</td>
+                            <td>
+                                <span th:text="${process.status}"/>
+                                <input type="hidden" name="status" th:value="${process.status}"/><!--隐藏域中，保存id-->
                             </td>
                         </tr>
                         <tr>
-                            <td>keepLogTime:</td>
+                            <td>version:</td>
                             <td>
-                                <input type="text" class="inputgri" name="keepLogTime" th:value="${sys_params.keepLogTime}"/>
+                                <span th:text="${process.version}"/>
+                                <input type="hidden" name="version" th:value="${process.version}"/><!--隐藏域中，保存id-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>daemon:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="daemon" th:value="${process.daemon}"/>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>deleted:</td>
+                            <td>
+                                <input type="text" class="inputgri" name="deleted" th:value="${process.deleted}"/>
                             </td>
                         </tr>
                         <tr>
-                            <td>isActive:</td>
+                            <td>pmtCreate:</td>
                             <td>
-                                <input type="text" class="inputgri" name="isActive" th:value="${sys_params.isActive}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>ips:</td>
-                            <td>
-                                <input type="text" class="inputgri" name="ips" th:value="${sys_params.ips}"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>contact:</td>
-                            <td>
-                                <input type="text" class="inputgri" name="contact" th:value="${sys_params.contact}"/>
+                                <span th:text="${#dates.format(process.pmtCreate,'yyyy/MM/dd')}"/>
                             </td>
                         </tr>
                         <tr>
                             <td>pmtUpdate:</td>
                             <td>
-                                <span th:text="${#dates.format(sys_params.pmtUpdate,'yyyy/MM/dd')}"/>
+                                <span th:text="${#dates.format(process.pmtUpdate,'yyyy/MM/dd')}"/>
                             </td>
                         </tr>
 
@@ -168,17 +195,24 @@
                 </form><!--修改系统参数表单-->
             </div>
         </div>
+
+    </div>
+
+
     </div>
 
 
     <div class="footer panel-footer navbar-fixed-bottom">
-        <h3 class="text-center">大庆聚宝科技有限公司</h3>
-        <h4 class="text-center">www.jubaoapp.com</h4>
-
-
+        <h3 class="text-center">大庆聚宝科技有限公司</h3>  <h4 class="text-center">www.jubaoapp.com</h4>
     </div>
 
     <!--        ==================================================          -->
+    <!--服务器消息-->
+    <!--<input  id="text" type="text" />-->
+    <!--<button onclick="send()">SEND MESSAGE</button>-->
+    <!--<button onclick="closeWebSocket()">CLOSE</button>-->
+    <!--<button onclick="openWebSocket()">开启</button>-->
+    <!--<div id="message"></div>-->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -195,5 +229,22 @@
 
 
 </body>
+
+<!--<script>-->
+<!--    //可选中状态导航栏-->
+<!--    $("#mytab a").click(function(e){-->
+<!--        e.preventDefault();-->
+<!--        $(this).tab("show");-->
+<!--    });-->
+<!--</script>-->
+<!--<scrip>-->
+<!--    $(function () {-->
+<!--    $("#myBar li").click(function (e) {-->
+<!--    e.preventDefault()-->
+<!--    $(this).tab('show')-->
+<!--    window.location.href = 'http://localhost:3000' + $(this).children('a').attr('href')-->
+<!--    })-->
+<!--    })-->
+<!--</scrip>-->
 
 </html>

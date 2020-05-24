@@ -60,11 +60,9 @@ public class ProjProcessService implements IProjProcessService {
     @Override
     public void delByPrimaryKey(int id,boolean disableDisplayOnly){
         if(disableDisplayOnly){
-            Proj1ProcessExample.Criteria criteria = proj1ProcessExample.createCriteria();
-            criteria.andIdEqualTo(id);
-            Proj1Process proj1Process = getByPrimaryKey(id);
-            proj1Process.setDeleted(0);
-            proj1ProcessMapper.updateByExample(proj1Process,proj1ProcessExample);
+            Proj1Process proj1Process = proj1ProcessMapper.selectByPrimaryKey(id);
+            proj1Process.setDeleted(1);
+            proj1ProcessMapper.updateByPrimaryKey(proj1Process);
         }else{
             proj1ProcessMapper.deleteByPrimaryKey(id);
         }
